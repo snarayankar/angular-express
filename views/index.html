@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sansExpressApp">
+    <head>
+        <title>Digital Phone Number Validator</title>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
+        <script src="javascripts/app.js" type="text/javascript"></script>
+        <style>
+            .error {
+                color: red;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h3>Digital Phone Number Validator</h3>
+        <div ng-controller="myController">
+            <ng-form name="phoneValidatorForm">
+                <div>Enter Phone No. : </div>
+                <div>
+                    <input type="text" placeholder="202-222-2345" name="phoneNumber" ng-pattern="phoneValidatorRegex" ng-model="phoneNumber" ng-change="invokeComboGenerator(phoneNumber)" />
+                    <span class="error" ng-show="phoneValidatorForm.phoneNumber.$error.required">Required!</span>
+                    <br><span class="error" ng-show="phoneValidatorForm.phoneNumber.$error.pattern">Please enter a valid phone number format [202-234-3456]</span><br><br>
+                </div>
+
+                <div> <h5>Combinations generated from JS </h5>
+                    Total Number of Combinations Possible: {{listOfCombinationsJS.length}} <br/>
+                    Here is the complete List:
+                    <ul>
+                        <li ng-repeat="combo in listOfCombinationsJS">
+                            {{combo}}
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div>  <h5>Combinations generated from Spring </h5>
+                    Total Number of Combinations Possible: {{listOfCombinationsSpring.length}} <br/>
+                    Here is the complete List:
+                    <ul>
+                        <li ng-repeat="combo in listOfCombinationsSpring">
+                            {{combo}}
+                        </li>
+                    </ul>
+                </div>
+            </ng-form>
+        </div>
+
+        <div>
+            <br> Requirements:
+            <ul>1.Your application should accept and validate a 7 or 10 digit phoneNumber number.</ul>
+            <ul>2.Assuming a standard alpha-numeric telephone keypad please generate a list of all possible combinations of alpha-numeric phoneNumber numbers from the input phoneNumber number. Display the total count at the beginning.</ul>
+            <ul>3.Implement paging for the output with each page getting it's data from the server via AJAX.</ul>
+            <ul>4.Provide unit tests for your backend implementation.</ul>
+        </div>
+    </body>
+</html>
